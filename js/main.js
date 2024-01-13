@@ -46,7 +46,7 @@ function mostraTarefas() {
         novaTarefa = novaTarefa + `
             <li class="task-li">
                 <img src="assets/img/check.png" alt="Concluída" class="img-check" title="Concluída" onclick="concluirTarefa(${indice})">
-                <img src="assets/img/edit.png" alt="Editar" class="img-edit" title="Editar">
+                <img src="assets/img/edit.png" alt="Editar" class="img-edit" title="Editar (Função indisponível)">
                 <img src="assets/img/del.png" alt="Apagar" class="img-del" title="Apagar" onclick="deletarTarefa(${indice})">
                 <p>${tarefa}</p>
             </li>
