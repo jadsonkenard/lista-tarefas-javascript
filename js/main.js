@@ -6,11 +6,13 @@ botaoTarefas.addEventListener('click', addNovaTarefa)
 minhaListaTarefas = []
 tarefasConcluidas = []
 
+
 valorTarefas.addEventListener('keypress', function(e) {
     if (e.keyCode === 13){
         addNovaTarefa()
     }
 })
+
 
 function addNovaTarefa() {
     if (!valorTarefas.value) {
@@ -20,6 +22,7 @@ function addNovaTarefa() {
             confirmButtonColor: "#f00",
         })
         return
+
 
     }
     if (minhaListaTarefas.includes(valorTarefas.value)) {
@@ -42,17 +45,18 @@ function mostraTarefas() {
     minhaListaTarefas.forEach((tarefa, indice) => {
         novaTarefa = novaTarefa + `
             <li class="task-li">
-                <img src="img/check.png" alt="Concluída" class="img-check" title="Concluída" onclick="concluirTarefa(${indice})">
+                <img src="assets/img/check.png" alt="Concluída" class="img-check" title="Concluída" onclick="concluirTarefa(${indice})">
+                <img src="assets/img/edit.png" alt="Editar" class="img-edit" title="Editar">
+                <img src="assets/img/del.png" alt="Apagar" class="img-del" title="Apagar" onclick="deletarTarefa(${indice})">
                 <p>${tarefa}</p>
-                <img src="img/edit.png" alt="Editar" class="img-edit" title="Editar (Função indisponível)">
-                <img src="img/del.png" alt="Apagar" class="img-del" title="Apagar" onclick="deletarTarefa(${indice})">
             </li>
         `
     })
     tarefasUl.innerHTML = novaTarefa
 }
 
-function deletarTarefa() {
+
+function deletarTarefa(i) {
     Swal.fire({
         icon: "error",
         showCancelButton: true,
@@ -61,7 +65,7 @@ function deletarTarefa() {
         confirmButtonText: "Apagar",
     }).then((result) => {
         if (result.isConfirmed) {
-            confirmacaoDelete()
+            confirmacaoDelete(i)
             Swal.fire({
                 text: "Tarefa apagada",
                 icon: "success",
@@ -75,11 +79,14 @@ function confirmacaoDelete(i) {
     mostraTarefas()
 }
 
+
 function concluirTarefa(i){
     tarefasConcluidas.push(minhaListaTarefas[i])
     mostrarTarefasConcluidas()
     confirmacaoDelete(i)
+    deleteTempo()
 }
+
 
 function mostrarTarefasConcluidas(){
     let concluida = ''
@@ -87,14 +94,23 @@ function mostrarTarefasConcluidas(){
         concluida = concluida + `
         <li class="task-li-concluidas">
         <p>${tarefa}</p>
-        <img src="img/del.png" alt="Apagar" class="img-del" title="Apagar"" onclick="deleteConcluidas(${indice})">
         </li>
         `
     })
     tarefaFinalizada.innerHTML = concluida
 }
+
+
 function deleteConcluidas(i){
     tarefasConcluidas.splice(i, 1)
     mostrarTarefasConcluidas()
 
+
+}
+
+
+function deleteTempo() {
+    setTimeout(function(){
+    deleteConcluidas()
+  }, 15000)
 }
