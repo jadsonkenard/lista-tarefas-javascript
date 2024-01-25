@@ -39,7 +39,6 @@ function addNovaTarefa() {
             confirmButtonColor: "#87CEFA"
         })
         mostraTarefas()
-        valorTarefas.value = ''
     } else {
         minhaListaTarefas.push(valorTarefas.value)
         valorTarefas.value = ''
@@ -47,6 +46,7 @@ function addNovaTarefa() {
         valorTarefas.focus()
     }
 }
+
 function mostraTarefas() {
     let novaTarefa = ''
     minhaListaTarefas.forEach((tarefa, indice) => {
@@ -64,6 +64,7 @@ function mostraTarefas() {
 function deletarTarefa(i) {
     Swal.fire({
         icon: "error",
+        text: `Apagar tarefa: ${minhaListaTarefas[i]}`,
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -90,6 +91,7 @@ function mostrarTarefasConcluidas() {
         concluida = concluida + `
         <li class="task-li-concluidas">
         <p>${tarefa}</p>
+        <img src="img/del.png" alt="Apagar" class="img-del" title="Apagar" onclick="deleteConcluidas(${indice})">
         </li>
         `
     })
@@ -102,5 +104,5 @@ function deleteConcluidas(i) {
 function deleteTempo() {
     setTimeout(function () {
         deleteConcluidas()
-    }, 20000)
+    }, 30000)
 }
