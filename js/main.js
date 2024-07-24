@@ -53,13 +53,14 @@ function mostraTarefas() {
         novaTarefa = novaTarefa + `
             <li class="task-li">
                 <img src="img/check.png" alt="Concluída" class="img-check" title="Concluída" onclick="concluirTarefa(${indice})">
-                <p>${tarefa}</p>
-                <img src="img/edit.png" alt="Editar" class="img-edit" title="Editar (Função indisponível)">
+                <p class="p-task">${tarefa}</p>
                 <img src="img/del.png" alt="Apagar" class="img-del" title="Apagar" onclick="deletarTarefa(${indice})">
             </li>
         `
     })
     tarefasUl.innerHTML = novaTarefa
+
+    localStorage.setItem('tarefas', JSON.stringify(minhaListaTarefas))
 }
 function deletarTarefa(i) {
     Swal.fire({
@@ -106,3 +107,14 @@ function deleteTempo() {
         deleteConcluidas()
     }, 30000)
 }
+
+function carregarTarefas() {
+    const tarefasSalvas = localStorage.getItem('tarefas')
+  
+    if (tarefasSalvas) {
+        minhaListaTarefas = JSON.parse(tarefasSalvas)
+    }
+  
+    mostraTarefas()
+  }
+  carregarTarefas()
