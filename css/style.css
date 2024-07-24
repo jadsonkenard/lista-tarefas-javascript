@@ -80,27 +80,28 @@
     display: flex;
     height: 50px;
     border-radius: 5px;
-    /* justify-content: space-between; */
     align-items: center;
-    padding: 0 15px;
     margin-bottom: 10px;
-    display: grid;
-    grid-template-columns: 0fr 0fr 0fr 0fr;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    justify-content: space-between;
+    padding: 0px 10px;
+
+}
+
+.p-task {
+    position: absolute;
+    padding-left: 35px;
 }
 
 
 .task-li:hover .img-check {
     opacity: 1;
+    z-index: 10;
 }
 
 
-.task-li:hover .img-edit {
+.task-li:hover {
     opacity: 1;
 }
-
 
 .task-li:hover .img-del {
     opacity: 1;
